@@ -1,4 +1,4 @@
-# 学生会自动化招新系统 Recruitment System for Students' Union
+# **学生会自动化招新系统** Recruitment System for Students' Union
 
 这是学生会招新系统, 可以自动化生成各部门名单. This is the recuritment system of Students' Union, which can generate a xls roster automatically in a short time.
 
