@@ -70,7 +70,7 @@ AssignmentDict = {
 Dir = os.getcwd() + '/'
 print('欢迎使用物理与光电学院团委学生会 招新ScriptV2.0 :)\n<<<<<<<<<<<<<<<<<< 啦啦啦我是分割线 >>>>>>>>>>>>>>>>>>')
 print('author:\n马守然 (2014级应用物理学)\n学术科创部\n物理与光电学院团委学生会'
-      '\nEmail: 1941688873@qq.com\n<<<<<<<<<<<<<<<<<< 啦啦啦我是分割线 >>>>>>>>>>>>>>>>>>')
+      '\nEmail: 1941688873@qq.com / Ma.Seoyin@gmail.com\n<<<<<<<<<<<<<<<<<< 啦啦啦我是分割线 >>>>>>>>>>>>>>>>>>')
 FileName = input('请输入文件名(切勿包含扩展名!):\n')
 RawData = xlrd.open_workbook(Dir + FileName + '.xls').sheet_by_index(0)
 Len = RawData.nrows - 1 # 一共有Len那么多的人报名团学(可能有人重复填了, 不管)
