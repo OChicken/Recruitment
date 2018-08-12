@@ -31,7 +31,7 @@ def ContactDeps(TheDep, TheDep1, TheDep2, PhoneNum, QQ, Name, Assignment, Assign
     for i in range(0, len(TheDep1)):
         TheDep.write(i + 1, 0, PhoneNum[int(TheDep1[i])])
         TheDep.write(i + 1, 1, QQ[int(TheDep1[i])])
-        if TheDep1[i] in Iron[:, DepNum]:
+        if TheDep1[i] in Iron:
             TheDep.write(i + 1, 2, Name[int(TheDep1[i])], color)
         else:
             TheDep.write(i + 1, 2, Name[int(TheDep1[i])])
@@ -103,7 +103,6 @@ for i in repeat:
     del Assignment[i]    
 Len = len(SchoolNum)
 Class = ReferDict(Class, ClassDict, Len)
-SHEET1 = np.vstack((PhoneNum, QQ, Class, SchoolNum, Name, Volunteer1, Volunteer2, Assignment))
 
 WorkBook = xlwt.Workbook()
 # 录入部门志愿
@@ -129,10 +128,10 @@ WriteSheet(DepVol, ReferDict(Assignment, AssignmentDict, Len), 7, Len)
 Roster = WorkBook.add_sheet('第一第二志愿名单')
 Dep1 = 1000 * np.ones((Len, 8))
 Dep2 = 1000 * np.ones((Len, 8))
-Iron = 1000 * np.ones((Len, 8))
+Iron = []
 for i in range(0, Len):
     if (Volunteer1[i] == Volunteer2[i]) & (Assignment[i] == 2):
-        Iron[i, (Volunteer1[i] - 1)] = i # 一个第一第二志愿都填了同一个部门而且不服从调剂的萌新i. -1是为了从0开始index
+        Iron.append(i) # 一个第一第二志愿都填了同一个部门而且不服从调剂的萌新i. -1是为了从0开始index
     for j in range(0, 8):
         if Volunteer1[i] == (j + 1):
             Dep1[i, j] = i # 第一志愿去部门j的萌新i
@@ -147,13 +146,12 @@ xlwt.add_palette_colour('yellow', 0x22)
 color = xlwt.easyxf('pattern: pattern solid, fore_colour yellow')
 for j in range(0, 8):
     Roster.write(1, j + 1 + col, DepDict[j + 1])
-    Iron_Dep = list(Iron[:, j])
     for i in range(0, Len):
-        if (Dep1[i, j] != 1000) & (Dep1[i, j] in Iron):
+        if (Dep1[i, j] in Iron) & (Dep1[i, j] != 1000):
             # 如果萌新i铁定想去部门j(亦即第一第二志愿填同一个部门, 而且不服从调剂), 就highlight出来
             Roster.write(2 + i, j + 1 + col, Name[int(Dep1[i, j])], color)
-        if (Dep1[i, j] != 1000) & ((Dep1[i, j] in Iron) == 0):
-            # 如果萌新i第一志愿报了部门j而并不是铁定想去部门j就不highlight. 包括但不限于, 第一第二志愿不同, 或者第一第二志愿相同却服从调剂, 等情况
+        elif Dep1[i, j] != 1000:
+            # 其余情况不highlight. 包括但不限于, 第一第二志愿不同, 或者第一第二志愿相同却服从调剂, 等
             Roster.write(2 + i, j + 1 + col, Name[int(Dep1[i, j])])
 WaiLian1 = np.extract(Dep1[:, 0] < 1000, Dep1[:, 0])
 XueChuang1 = np.extract(Dep1[:, 1] < 1000, Dep1[:, 1])
