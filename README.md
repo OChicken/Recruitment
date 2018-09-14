@@ -15,14 +15,15 @@
 本招新系统的目的就在于改善这个问题. 采用纸质申请表和线上申请表 (线上问卷) 结合的方法. 线上问卷只需要萌新填写联系方式和第一第二志愿选哪个部门并是否服从调剂等信息, 并不需要写个人简介, 如图:
 
 <p align="center">
-    <img width="500" img src="attachments/Questionnaire.jpg">
+    <img width="300" img src="attachments/Questionnaire.jpg">
 </p>
 
 从后台导出问卷结果并采用本招新系统的小程序一键生成名单只需要不到一分钟的时间, 所以并不需要到12:00截止填写, 可以给萌新预留多一点时间, 譬如12:30截止填写 (即使问卷处于发布态也可以导出结果, 随时导出结果都可以). 生成的xls文件如图
 
 <p align="center">
     <img src="attachments/Volunteer.png">
-
+</p>
+<p align="center">
     <img src="attachments/ContactDeps.png">
 </p>
 
